@@ -47,7 +47,7 @@ class CategoryController extends Controller
             'description' => $request->description,
         ]);
 
-        return to_route('admin.categories.index');
+        return to_route('admin.categories.index')->with('success', 'Category created seccessfully');
     }
 
     /**
@@ -96,7 +96,7 @@ class CategoryController extends Controller
         'description' => $request->description,
         'image'=> $image
         ]);
-        return to_route('admin.categories.index');
+        return to_route('admin.categories.index')->with('success', 'Category updated seccessfully');
     }
 
     /**
@@ -111,6 +111,6 @@ class CategoryController extends Controller
         $category->menus()->detach();
         $category->delete();
 
-        return to_route('admin.categories.index');
+        return to_route('admin.categories.index')->with('danger', 'Category deleted seccessfully');
     }
 }

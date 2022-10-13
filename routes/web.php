@@ -5,12 +5,19 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\ReservationController;
 use App\Http\Controllers\Admin\TableController;
+use App\Http\Controllers\Frontecd\WelcomeController;
+use App\Http\Controllers\Frontend\CategoryController as FrontendCategoryController;
+use App\Http\Controllers\Frontend\MenuController as FrontendMenuController;
+use App\Http\Controllers\Frontend\ReservationController as FrontendReservationController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [WelcomeController::class,'index']);
+Route::get('/categories', [FrontendCategoryController::class, 'index'])->name('categories.index');
+Route::get('/categories/{category}', [FrontendCategoryController::class, 'show'])->name('categories.show');
+Route::get('/menus', [FrontendMenuController::class, 'index'])->name('menus.index');
+Route::get('/resrvations/step-one', [FrontendReservationController::class, 'stepOne'])->name('resrvations.step.one');
+Route::get('/resrvations/step-two', [FrontendReservationController::class, 'stepTwo'])->name('resrvations.step.two');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
